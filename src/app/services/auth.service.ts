@@ -5,12 +5,9 @@ import { Router } from '@angular/router';
 @Injectable()
 export class AuthService {
 
-  public name: string;
-  private _token: string;
   jwtHelper: JwtHelper = new JwtHelper();
 
   constructor(private router: Router) {
-    this._token = localStorage.getItem('token');
   }
 
   public isLogued() {
@@ -24,8 +21,7 @@ export class AuthService {
 
   public getToken() {
     try {
-      console.log('getToekn', this.jwtHelper.decodeToken(this._token));
-      return this.jwtHelper.decodeToken(this._token);
+      return this.jwtHelper.decodeToken(localStorage.getItem("token"));
     } catch (error) {
       return undefined;
     }
@@ -34,8 +30,8 @@ export class AuthService {
   public getExpirationDate() {
 
     try {
-      console.log('getExpirationDate', this.jwtHelper.getTokenExpirationDate(this._token))
-      return this.jwtHelper.getTokenExpirationDate(this._token);
+      //console.log('getExpirationDate', this.jwtHelper.getTokenExpirationDate(localStorage.getItem("token")))
+      return this.jwtHelper.getTokenExpirationDate(localStorage.getItem("token"));
     } catch (error) {
       return null;
     }
@@ -43,8 +39,8 @@ export class AuthService {
 
   public logOut() {
     try {
-      localStorage.setItem('token', null);
-      this.router.navigate(['/']);
+      localStorage.removeItem('token');
+      this.router.navigateByUrl('/');
     } catch (error) {
       return false;
     }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-registered-user',
@@ -8,14 +9,16 @@ import { Router } from '@angular/router';
 })
 export class RegisteredUserComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,private authService:AuthService) { }
 
   ngOnInit() {
   }
 
   logOut(){
-    localStorage.removeItem("token");
-    this.router.navigateByUrl("/");
+    this.authService.logOut();
+  }
+  viewJwtData(){
+    console.log(this.authService.getToken());
   }
 
 }
