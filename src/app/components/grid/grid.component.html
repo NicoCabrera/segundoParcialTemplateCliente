@@ -1,0 +1,25 @@
+<div class="container">
+  <table class="highlight">
+    <thead>
+      <tr>
+        <th>e-mail</th>
+        <th>tipo de usuario</th>
+        <th>foto</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{user.email}}</td>
+        <td>{{user.rol}}</td>
+        <td>
+          <img src="assets/img/{{user.photo}}" class="rounded mini" alt="...">
+        </td>
+        <td>
+          <button type="button" class="btn btn-danger" (click)="delete(user.userid)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

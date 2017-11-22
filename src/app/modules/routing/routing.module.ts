@@ -7,6 +7,7 @@ import { HttpModule } from '@angular/http';
 import { RegisteredUserComponent } from '../../components/registered-user/registered-user.component';
 import { AuthService } from '../../services/auth.service';
 import { VerifyJwtService } from '../../services/verify-jwt.service';
+import { GridComponent } from '../../components/grid/grid.component';
 
 const appRoutes: Routes = [
   {
@@ -16,7 +17,14 @@ const appRoutes: Routes = [
   {
     path: "registered-user",
     component: RegisteredUserComponent,
-    canActivate: [VerifyJwtService]
+    canActivate: [VerifyJwtService],
+    children: [
+      {
+        path:"grid",
+        component:GridComponent
+      }
+    ]
+    
   }
 ];
 
@@ -32,7 +40,8 @@ const appRoutes: Routes = [
   ],
   declarations: [
     MainMenuComponent,
-    RegisteredUserComponent
+    RegisteredUserComponent,
+    GridComponent
   ],
   providers: [AuthService, VerifyJwtService]
 })
