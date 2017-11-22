@@ -9,7 +9,7 @@ import { JwtModule } from './modules/jwt/jwt.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,

@@ -60,7 +60,7 @@ export class MainMenuComponent implements OnInit, AfterViewInit {
     let email = this.loginForm.get("email").value;
     let password = this.loginForm.get("password").value;
     let rol = "Usuario comun";
-    let photo = "";
+    let photo = "default.jpg";
     this.webService.post({ email: email, password: password , rol: rol, photo: photo}, "http://localhost/api2Parcial/apirest/login/signup")
       .then((data) =>{
         if(data.jwt != null){

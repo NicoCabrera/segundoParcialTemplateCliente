@@ -8,6 +8,7 @@ import { RegisteredUserComponent } from '../../components/registered-user/regist
 import { AuthService } from '../../services/auth.service';
 import { VerifyJwtService } from '../../services/verify-jwt.service';
 import { GridComponent } from '../../components/grid/grid.component';
+import { OnlyAdminComponent } from '../../components/only-admin/only-admin.component';
 
 const appRoutes: Routes = [
   {
@@ -22,6 +23,11 @@ const appRoutes: Routes = [
       {
         path:"grid",
         component:GridComponent
+      },
+      {
+        path:"only-admin",
+        component:OnlyAdminComponent,
+        canActivate: [VerifyJwtService]
       }
     ]
     
@@ -41,7 +47,8 @@ const appRoutes: Routes = [
   declarations: [
     MainMenuComponent,
     RegisteredUserComponent,
-    GridComponent
+    GridComponent,
+    OnlyAdminComponent
   ],
   providers: [AuthService, VerifyJwtService]
 })
