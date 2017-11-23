@@ -24,7 +24,9 @@ export class GridComponent implements OnInit {
   }
 
   delete(userid){
-    console.log("Zen o sama dice.. POM!");
+    let header = { userid : userid, jwt: localStorage.getItem("token")};
+    this.webService.post(header,"http://localhost/api2Parcial/apirest/user/delete")
+    .then((data)=>console.log(data));
   }
 
 }
